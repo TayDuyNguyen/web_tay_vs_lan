@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+/* ===================================================
+   RESET & BASE STYLES
+   =================================================== */
+:root {
+  --primary: #f9f506;
+  --secondary: #ff6b9d;
+  --navy-deep: #0a0a1f;
+  --navy-light: #16163a;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(26, 26, 58, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--navy-deep);
+  background-image:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(249, 245, 6, 0.05) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(255, 107, 157, 0.05) 0%,
+      transparent 40%
+    );
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ===================================================
+   UTILITIES
+   =================================================== */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+}
+
+.gold-glow {
+  text-shadow: 0 0 10px rgba(249, 245, 6, 0.4);
+}
+
+/* ===================================================
+   MARQUEE
+   =================================================== */
+.marquee {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--glass-border);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee h1 {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin: 0;
+  padding-left: 100%;
+  animation: moveText 20s linear infinite;
+}
+
+@keyframes moveText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* ===================================================
+   PROFILE SECTION
+   =================================================== */
+.profile-container {
+  margin-top: 2rem;
+  z-index: 50;
+  position: relative;
+}
+
+#profileLink img {
+  border: 3px solid var(--primary);
+  padding: 2px;
+  background: var(--navy-light);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#profileLink:hover img {
+  transform: scale(1.15) rotate(5deg);
+}
+
+#profileCard {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+#profileCard img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 1rem;
+  border: 2px solid var(--primary);
+  margin-bottom: 1rem;
+}
+
+#closeProfile {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: #666;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.profile-info strong {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--primary);
+}
+
+.profile-role {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.profile-info p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5rem 0;
+}
+
+/* ===================================================
+   LOTTIE
+   =================================================== */
+.lottie-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem auto;
+  pointer-events: none;
+}
+
+/* ===================================================
+   MONTH CHECKER
+   =================================================== */
+.checker-wrapper {
+  width: 95%;
+  max-width: 450px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  margin: 1rem auto;
+}
+
+#typing-label {
+  display: block;
+  min-height: 3rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem;
+  border-radius: 1rem;
+  border: 1px solid var(--glass-border);
+  width: 100%;
+}
+
+#check_month {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+#check_month::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-check {
+  background: var(--primary);
+  color: var(--navy-deep);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.btn-check:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+/* ===================================================
+   INVITATION CARDS
+   =================================================== */
+.invitations {
+  width: 90%;
+  max-width: 450px;
+  margin: 2rem auto;
+}
+
+.card-invitation {
+  display: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 157, 0.15),
+    rgba(10, 10, 31, 1)
+  );
+  border: 1px solid var(--glass-border);
+  padding: 2.5rem 2rem;
+  border-radius: 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.card-invitation p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: #eee;
+}
+
+.card-invitation button {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 100px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.card-invitation button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+}
+
+/* ===================================================
+   PASSWORD MODAL
+   =================================================== */
+.password-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-modal-content {
+  width: 90%;
+  max-width: 400px;
+  background: var(--navy-light);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.password-modal-header {
+  padding: 1.5rem;
+  background: linear-gradient(to right, var(--secondary), #ff4e8a);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.password-modal-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.password-modal-body {
+  padding: 2rem;
+}
+
+#passwordInput {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+  padding: 1rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.password-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-submit {
+  flex: 1;
+  background: var(--primary);
+  color: var(--navy-deep);
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-cancel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: none;
+}
+
+/* ===================================================
+   RESPONSIVE
+   =================================================== */
+@media (max-width: 600px) {
+  .marquee h1 {
+    font-size: 1rem;
+  }
+  .lottie-container lottie-player {
+    width: 100% !important;
+    height: auto !important;
+  }
+}

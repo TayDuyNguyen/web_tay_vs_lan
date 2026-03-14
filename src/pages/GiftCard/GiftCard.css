@@ -1,0 +1,131 @@
+.tan-em-container {
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.gift-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gift-container:hover {
+    transform: scale(1.05);
+}
+
+.gift-box {
+    width: 150px;
+    height: 100px;
+    background: #ff4081;
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gift-lid {
+    width: 160px;
+    height: 40px;
+    background: #ff6b9d;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    border-radius: 10px;
+    transition: transform 0.5s;
+    transform-origin: center bottom;
+    z-index: 2;
+}
+
+.gift-bow {
+    width: 40px;
+    height: 40px;
+    background: #ff1a5e;
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.gift-bow::before,
+.gift-bow::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 20px;
+    background: #ff1a5e;
+    border-radius: 10px;
+}
+
+.gift-bow::before {
+    top: 10px;
+    left: -50px;
+    transform: rotate(-45deg);
+}
+
+.gift-bow::after {
+    top: 10px;
+    right: -50px;
+    transform: rotate(45deg);
+}
+
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    background: #ff4081;
+    transform: rotate(45deg);
+    animation-name: floatHeart;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ff4081;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -50%;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -50%;
+}
+
+@keyframes floatHeart {
+    0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.8; }
+    100% { transform: rotate(45deg) translateY(-100vh) scale(1.5); opacity: 0; }
+}
+
+.open .gift-lid {
+    transform: rotate(-110deg);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s;
+}

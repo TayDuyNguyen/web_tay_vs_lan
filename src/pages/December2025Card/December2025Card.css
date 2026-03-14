@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+.december-card-container {
+    background: #0b1d2a;
+    min-height: 100vh;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+}
+
+.font-imperial { font-family: 'Imperial Script', cursive; }
+.font-handwriting { font-family: 'Dancing Script', cursive; }
+
+.snowflake {
+    position: absolute;
+    top: -20px;
+    font-size: var(--size);
+    color: white;
+    opacity: var(--opacity);
+    user-select: none;
+    pointer-events: none;
+    animation: fall linear infinite;
+    animation-duration: var(--duration);
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+.animate-swing-bell {
+    animation: swing 2s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+@keyframes swing {
+    0% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    100% { transform: rotate(-15deg); }
+}
+
+.fly-down-1, .fly-down-2, .fly-down-3, .fly-down-4 { opacity: 0; }
+.fly-down-1 { animation: drop 3s ease-out forwards; animation-delay: 0s; }
+.fly-down-2 { animation: drop 3s ease-out forwards; animation-delay: 0.5s; }
+.fly-down-3 { animation: drop 3s ease-out forwards; animation-delay: 1s; }
+.fly-down-4 { animation: drop 3s ease-out forwards; animation-delay: 1.5s; }
+
+@keyframes drop {
+    from { transform: translateY(-50vh); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.fly-curve {
+    animation: curve 8s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes curve {
+    0% { transform: translate(100vw, -100vh) scale(0.5); opacity: 0; }
+    20% { opacity: 1; transform: translate(50vw, -50vh) scale(0.8); }
+    80% { opacity: 1; transform: translate(-20vw, 0) scale(1); }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+
+/* Gallery Masonry */
+.gallery-wrapper {
+    padding-top: 20px;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.3) transparent;
+}
+
+.gallery-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+.gallery-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+.gallery-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.grid-image {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    position: relative;
+    padding: 0 40px;
+}
+
+.grid-image::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.grid-item {
+    flex: 0 0 auto;
+    position: relative;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.grid-item::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.grid-item:nth-child(even) { padding-top: 80px; }
+.grid-item:nth-child(even)::before { height: 80px; }
+
+.grid-item::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: #ffd700;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 8px #ffd700;
+    z-index: 2;
+}
+
+.grid-item img {
+    width: 90%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border: 4px solid white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    display: block;
+    border-radius: 8px;
+}
+
+.grid-item img:hover {
+    transform: scale(1.1) rotate(2deg) !important;
+    z-index: 10;
+}
+
+/* Typing effect for letter */
+.typing-effect {
+    opacity: 1;
+    overflow: hidden;
+    white-space: wrap;
+    animation: fadeInTyping 1s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInTyping {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.typing-delay-1 { animation-delay: 0.5s; }
+.typing-delay-2 { animation-delay: 1.5s; }
+.typing-delay-3 { animation-delay: 3s; }
+.typing-delay-4 { animation-delay: 4.5s; }
+.typing-delay-5 { animation-delay: 6s; }
