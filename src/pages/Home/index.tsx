@@ -7,6 +7,8 @@ import founderImg from './image/founder.jpg';
 
 const passwords: Record<string, string> = {
   thang2_2026: '23072004',
+  thang3_2026: '23072004',
+  libary: '23072004',
   thang1_2026: '23072004',
   thang12: '23072004',
   thang11: '23072004',
@@ -16,6 +18,8 @@ const passwords: Record<string, string> = {
 
 const routeMapping: Record<string, string> = {
   thang2_2026: '/thiep-2-2026',
+  thang3_2026: '/thiep-3-2026',
+  libary: '/libary',
   thang1_2026: '/thiep-1-2026',
   thang12: '/thiep-12',
   thang11: '/thiep-11',
@@ -59,7 +63,7 @@ export default function Home() {
   const handleCheckMonth = () => {
     const val = monthInput.trim();
     if (!val) return;
-    const available = ['02/2026', '01/2026', '12/2025', '11/2025', '10/2025', '20/10/2025'];
+    const available = ['03/2026', '02/2026', '01/2026', '12/2025', '11/2025', '10/2025', '20/10/2025', 'libary'];
     if (available.includes(val)) {
       setVisibleMonths([...visibleMonths, val]);
     } else {
@@ -163,6 +167,18 @@ export default function Home() {
 
         {/* INVITATION CARDS */}
         <div className="invitations w-full">
+          {visibleMonths.includes('libary') && (
+            <div className="card-invitation" style={{ display: 'block' }}>
+              <p>Mở <strong>Thư viện</strong> để xem lại tất cả các món quà nhé 📚</p>
+              <button onClick={() => handleOpenCard('libary')}>Mở thư viện</button>
+            </div>
+          )}
+          {visibleMonths.includes('03/2026') && (
+            <div className="card-invitation" style={{ display: 'block' }}>
+              <p>Gửi cậu một món quà nhỏ cho <strong>Tháng 3/2026</strong> nồng nàn 💌</p>
+              <button onClick={() => handleOpenCard('thang3_2026')}>Mở thiệp ngay</button>
+            </div>
+          )}
           {visibleMonths.includes('02/2026') && (
             <div className="card-invitation" style={{ display: 'block' }}>
               <p>Gửi cậu một món quà nhỏ cho <strong>Tháng 2/2026</strong> nồng nàn 💌</p>

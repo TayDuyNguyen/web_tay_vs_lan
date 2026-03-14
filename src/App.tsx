@@ -7,6 +7,8 @@ import November2025Card from './pages/November2025Card';
 import December2025Card from './pages/December2025Card';
 import January2026Card from './pages/January2026Card';
 import February2026Card from './pages/February2026Card';
+import March2026Card from './pages/March2026Card';
+import Libary from './pages/libary';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <Route path="/thiep-12" element={<December2025Card />} />
       <Route path="/thiep-1-2026" element={<January2026Card />} />
       <Route path="/thiep-2-2026" element={<February2026Card />} />
+      <Route path="/thiep-3-2026" element={<March2026Card />} />
+      <Route path="/libary" element={<Libary />} />
     </Routes>
   );
 }
