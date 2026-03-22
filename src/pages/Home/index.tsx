@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Player } from '@lottiefiles/react-lottie-player';
+import { FlipClock } from './component';
 import monkeyShow from './image/monkey_show.png';
 import monkeyClose from './image/monkey_close.png';
 import founderImg from './image/founder.jpg';
@@ -43,6 +44,52 @@ export default function Home() {
   const [currentCard, setCurrentCard] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [passwordError, setPasswordError] = useState({ text: '', isError: false, shake: false });
+
+  // Love Timer States - Start date: 14/02/2026
+  const [timeTogether, setTimeTogether] = useState({
+    days: ['0', '0', '0'],
+    hours: ['0', '0'],
+    minutes: ['0', '0'],
+    seconds: ['0', '0'],
+  });
+
+  // Calculate time together
+  useEffect(() => {
+    const startDate = new Date('2026-02-14T22:00:00');
+    
+    const calculateTime = () => {
+      const now = new Date();
+      const diff = now.getTime() - startDate.getTime();
+      
+      if (diff < 0) {
+        // If start date is in the future
+        setTimeTogether({
+          days: ['0', '0', '0'],
+          hours: ['0', '0'],
+          minutes: ['0', '0'],
+          seconds: ['0', '0'],
+        });
+        return;
+      }
+      
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      setTimeTogether({
+        days: days.toString().padStart(3, '0').split(''),
+        hours: hours.toString().padStart(2, '0').split(''),
+        minutes: minutes.toString().padStart(2, '0').split(''),
+        seconds: seconds.toString().padStart(2, '0').split(''),
+      });
+    };
+    
+    calculateTime();
+    const interval = setInterval(calculateTime, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   // Typing Effect
   useEffect(() => {
@@ -143,6 +190,25 @@ export default function Home() {
           style={{ width: '100%', maxWidth: '500px', height: '300px' }}
         />
       </div>
+
+      {/* LOVE TIMER - FlipClock */}
+      <section className="w-full flex justify-center items-center py-8 px-4 atmospheric-radial">
+        <div className="relative">
+          {/* Background glow effects */}
+          <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
+          <div className="absolute -bottom-20 -right-20 w-[250px] h-[250px] bg-secondary/5 blur-[80px] rounded-full pointer-events-none"></div>
+          
+          <FlipClock
+            days={{ digits: timeTogether.days, label: 'NGÀY' }}
+            hours={{ digits: timeTogether.hours, label: 'GIỜ' }}
+            minutes={{ digits: timeTogether.minutes, label: 'PHÚT' }}
+            seconds={{ digits: timeTogether.seconds, label: 'GIÂY' }}
+            title="Hành Trình Yêu Thương"
+            subtitle="Từ 22h00 ngày 14/02/2026 - Chúng mình yêu nhau"
+            variant="primary"
+          />
+        </div>
+      </section>
 
       {/* MAIN CONTENT */}
       <main className="w-full flex flex-col items-center px-4 mb-20">
