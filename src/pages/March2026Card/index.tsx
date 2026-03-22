@@ -5,7 +5,7 @@ export default function March2026Card() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  const images = []; // Add images here later
+
 
   const handlePlayToggle = () => {
     if (!audioRef.current) return;

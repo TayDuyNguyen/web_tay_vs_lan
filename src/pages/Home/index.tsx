@@ -192,11 +192,11 @@ export default function Home() {
       </div>
 
       {/* LOVE TIMER - FlipClock */}
-      <section className="w-full flex justify-center items-center py-8 px-4 atmospheric-radial">
-        <div className="relative">
-          {/* Background glow effects */}
-          <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
-          <div className="absolute -bottom-20 -right-20 w-[250px] h-[250px] bg-secondary/5 blur-[80px] rounded-full pointer-events-none"></div>
+      <section className="w-full flex justify-center items-center py-4 sm:py-6 md:py-8 px-2 sm:px-3 md:px-4 atmospheric-radial overflow-hidden">
+        <div className="relative w-full max-w-full">
+          {/* Background glow effects - smaller on mobile */}
+          <div className="absolute -top-10 -left-10 sm:-top-16 sm:-left-16 md:-top-20 md:-left-20 w-[150px] sm:w-[200px] md:w-[300px] h-[150px] sm:h-[200px] md:h-[300px] bg-primary/5 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full pointer-events-none"></div>
+          <div className="absolute -bottom-10 -right-10 sm:-bottom-16 sm:-right-16 md:-bottom-20 md:-right-20 w-[125px] sm:w-[175px] md:w-[250px] h-[125px] sm:h-[175px] md:h-[250px] bg-secondary/5 blur-[40px] sm:blur-[60px] md:blur-[80px] rounded-full pointer-events-none"></div>
           
           <FlipClock
             days={{ digits: timeTogether.days, label: 'NGÀY' }}
@@ -204,7 +204,7 @@ export default function Home() {
             minutes={{ digits: timeTogether.minutes, label: 'PHÚT' }}
             seconds={{ digits: timeTogether.seconds, label: 'GIÂY' }}
             title="Hành Trình Yêu Thương"
-            subtitle="Từ 22h00 ngày 14/02/2026 - Chúng mình yêu nhau"
+            // subtitle="Từ ngày 14/02/2026 - Chúng mình yêu nhau"
             variant="primary"
           />
         </div>
